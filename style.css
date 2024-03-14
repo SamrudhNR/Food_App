@@ -27,20 +27,23 @@
 
 .search{
     display: flex;
+    padding: 0px 20px;
 }
 
 .searchbox {
     padding: 10px;
-    margin: 5px;
-    width: 97%;
     border: 1px solid black;
 }
 
-.searchlogo{
+.search-btn{
+    margin-left: 5px;
     width: 60px;
+    color: orangered;
+    font-weight: bold;
 }
 
 .card-sec{
+    /* margin-top: 35px; */
     box-sizing: inherit;
     display: flex;
     flex-wrap: wrap;
@@ -71,6 +74,7 @@
 }
 
 .shimmer-container{
+    margin-top: 35px;
     box-sizing: inherit;
     display: flex;
     flex-wrap: wrap;
@@ -87,4 +91,15 @@
     background-color: #e2e2e2;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+}
+
+.filter {
+    width: 100%;
+    display: flex;
+    margin: 15px;
+    justify-content: space-between;
+}
+
+.filter-btn{
+    width: 15%;
 }
