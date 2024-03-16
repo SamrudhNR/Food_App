@@ -20,6 +20,7 @@ const fetchData = async () => {
     const orginalList = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     setListOfRestaurants(orginalList)
     setFilteredData(orginalList)
+    console.log(orginalList)
 }
 
 //Conditonal Rendering
