@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { SEARCH_URL } from "../utils/constants";
 import RestCard from "./RestCard";
 import Shimmer from "./Shimmer";
@@ -59,7 +60,9 @@ const fetchData = async () => {
         <div className="card-sec">
             {
                 filteredData.map((restaurant) => (
-                    <RestCard key = {restaurant.info.id} resObj = {restaurant} />
+                    <Link key = {restaurant.info.id} 
+                    to={restaurant?.cta?.link}
+                    style={{ textDecoration: 'none' }}><RestCard resObj = {restaurant} /> </Link>
                 ))
             }
        
