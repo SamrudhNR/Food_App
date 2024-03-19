@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SEARCH_URL } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 import RestCard from "./RestCard";
 import Shimmer from "./Shimmer";
 
@@ -21,10 +22,14 @@ const fetchData = async () => {
     const orginalList = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     setListOfRestaurants(orginalList)
     setFilteredData(orginalList)
-    console.log(orginalList)
 }
 
 //Conditonal Rendering
+const onlineStatus = useOnlineStatus();
+
+if( !onlineStatus) return (
+    <div>Something went wrong, please check your internet connection! 🔴</div>
+) 
 
     if (listOfRestaurants.length === 0) {
         return  < Shimmer />
