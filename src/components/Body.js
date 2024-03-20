@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { SEARCH_URL } from "../utils/constants";
+import { SEARCH_URL, SWIGGY_API } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import RestCard from "./RestCard";
 import Shimmer from "./Shimmer";
@@ -16,7 +16,7 @@ const Body = () => {
     const [searchBtn, setSearchBtn] = useState("");
 
 const fetchData = async () => {
-    const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const response = await fetch(SWIGGY_API)
     const json = await response.json()
     // console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
     const orginalList = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -35,9 +35,9 @@ if( !onlineStatus) return (
         return  < Shimmer />
     }
     return (
-    <div>
-        <div className="filter">
-            <button className="filter-btn" onClick={
+    <div className="mx-14">
+        <div className="flex justify-between p-4 m-4">
+            <button className="px-5 w-15 py-2 bg-orange-100 mx-4 rounded-lg hover:bg-orange-300" onClick={
                 () => {
                     const myList = listOfRestaurants.filter(
                         (res) => res.info.avgRating > 4.0
@@ -46,13 +46,13 @@ if( !onlineStatus) return (
                 }
             }>
                 Top Rated Restaurants</button>
-                <div className="search">
-            <input type="text" className='searchbox' placeholder='Search....' value={searchBtn} 
+                <div className="flex">
+            <input type="text" className=' focus:ring-orange-300 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 pl-5 ring-1 ring-slate-400 shadow-sm ' placeholder='Search....' value={searchBtn} 
             onChange={ (e) => {
                 setSearchBtn(e.target.value);
             }}
             />
-            <button className="search-btn" 
+            <button className="px-4 py-2 bg-orange-100 mx-4 rounded-lg hover:bg-orange-300" 
             onClick={ () =>{
                 const myList = listOfRestaurants.filter(
                     (res) => res.info.name.toLowerCase().includes(searchBtn.toLowerCase())
@@ -62,7 +62,7 @@ if( !onlineStatus) return (
             > Search</button>
         </div>
         </div>
-        <div className="card-sec">
+        <div className="flex flex-wrap">
             {
                 filteredData.map((restaurant) => (
                     <Link key = {restaurant.info.id} 
