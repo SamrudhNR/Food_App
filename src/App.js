@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Body from './components/Body';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
+import RestMenu from './components/RestMenu';
 
 
 // Code Splitting
@@ -37,10 +38,10 @@ const appRouter = createBrowserRouter(
                     path: "/contact",
                     element: <Suspense fallback="Loading...."> <Contact /></Suspense>,
                 },
-                // {
-                //     path: "/restaurant/:restId",
-                //     element: <RestMenu />,
-                // },
+                {
+                    path: "/restaurant/:restId",
+                    element: <RestMenu />,
+                },
             ],
             errorElement: <ErrorPage />,
         },

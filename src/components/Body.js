@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SEARCH_URL, SWIGGY_API } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import RestCard from "./RestCard";
+import RestMenu from "./RestMenu";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
@@ -35,9 +36,9 @@ if( !onlineStatus) return (
         return  < Shimmer />
     }
     return (
-    <div className="mx-14">
+    <div className="bg-blue-50">
         <div className="flex justify-between p-4 m-4">
-            <button className="px-5 w-15 py-2 bg-orange-100 mx-4 rounded-lg hover:bg-orange-300" onClick={
+            <button className="px-5 w-15 py-2 bg-blue-100 hover:bg-blue-300 mx-4 rounded-lg " onClick={
                 () => {
                     const myList = listOfRestaurants.filter(
                         (res) => res.info.avgRating > 4.0
@@ -47,12 +48,12 @@ if( !onlineStatus) return (
             }>
                 Top Rated Restaurants</button>
                 <div className="flex">
-            <input type="text" className=' focus:ring-orange-300 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 pl-5 ring-1 ring-slate-400 shadow-sm ' placeholder='Search....' value={searchBtn} 
+            <input type="text" className=' focus:ring-blue-300 focus:outline-none appearance-none w-full text-sm leading-6 text-slate-900 placeholder-slate-400 rounded-md py-2 pl-5 ring-1 ring-slate-400 shadow-sm ' placeholder='Search....' value={searchBtn} 
             onChange={ (e) => {
                 setSearchBtn(e.target.value);
             }}
             />
-            <button className="px-4 py-2 bg-orange-100 mx-4 rounded-lg hover:bg-orange-300" 
+            <button className="px-4 py-2 bg-blue-100 hover:bg-blue-300 mx-4 rounded-lg" 
             onClick={ () =>{
                 const myList = listOfRestaurants.filter(
                     (res) => res.info.name.toLowerCase().includes(searchBtn.toLowerCase())
@@ -62,12 +63,10 @@ if( !onlineStatus) return (
             > Search</button>
         </div>
         </div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center items-center">
             {
                 filteredData.map((restaurant) => (
-                    <Link key = {restaurant.info.id} 
-                    to={restaurant?.cta?.link}
-                    style={{ textDecoration: 'none' }}><RestCard resObj = {restaurant} /> </Link>
+                    <Link key = {restaurant.info.id} to={"/restaurant/"+restaurant.info.id}><RestCard  resObj = {restaurant} /> </Link>
                 ))
             }
        
