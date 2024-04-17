@@ -5,6 +5,9 @@ import Body from './components/Body';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
 import RestMenu from './components/RestMenu';
+import { Provider } from 'react-redux';
+import appStore from './utils/appStore';
+import Cart from './components/Cart';
 
 
 // Code Splitting
@@ -14,10 +17,13 @@ const Contact = lazy(() => import('./components/Contact'));
 const About = lazy(() => import('./components/About'));
 
 const AppLayout = () => (
-    <div className="app">
-        <Header/>
-        <Outlet/>
-    </div>
+    <Provider store = {appStore}>
+        <div className="app">
+            <Header/>
+            <Outlet/>
+        </div>
+    </Provider>
+        
 )
 
 const appRouter = createBrowserRouter(
@@ -41,6 +47,10 @@ const appRouter = createBrowserRouter(
                 {
                     path: "/restaurant/:restId",
                     element: <RestMenu />,
+                },
+                {
+                    path: "/cart",
+                    element: <Cart />,
                 },
             ],
             errorElement: <ErrorPage />,
