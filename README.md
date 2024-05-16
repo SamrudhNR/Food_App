@@ -1,4 +1,4 @@
-# YumExpress
+# FoodBazaar
 
 ## About
 A food ordering app built on react using Swiggy's public API to display restaurants based on the location where user can select food items and place an order.
