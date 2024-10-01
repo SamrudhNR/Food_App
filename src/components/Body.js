@@ -38,7 +38,7 @@ if( !onlineStatus) return (
     return (
     <div className="bg-blue-50">
         <div className="flex justify-between p-4 m-4">
-            <button className="px-5 w-15 py-2 bg-blue-100 hover:bg-blue-300 mx-4 rounded-lg " onClick={
+            <button className="px-5 w-15 py-2 bg-black text-zinc-50 hover:bg-red-800 mx-4 rounded-lg " onClick={
                 () => {
                     const myList = listOfRestaurants.filter(
                         (res) => res.info.avgRating > 4.0
@@ -53,7 +53,7 @@ if( !onlineStatus) return (
                 setSearchBtn(e.target.value);
             }}
             />
-            <button className="px-4 py-2 bg-blue-100 hover:bg-blue-300 mx-4 rounded-lg" 
+            <button className="px-4 py-2 bg-black text-zinc-50 hover:bg-red-800 mx-4 rounded-lg" 
             onClick={ () =>{
                 const myList = listOfRestaurants.filter(
                     (res) => res.info.name.toLowerCase().includes(searchBtn.toLowerCase())
